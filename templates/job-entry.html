@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>JobHUB</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <style>
+    /* style.css */
+  </style>
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="{{url_for('home')}}">JobHUB</a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="{{url_for('home')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{ url_for('search') }}">JobSearch</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      <a href="" class="book-a-table-btn scrollto d-none d-lg-flex">Github</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <section class="inner-page">
+      <div class="container">
+      </div>
+    </section>
+
+    <section class="job-form">
+      <div class="container">
+        <div class="section-title" style="text-align: center;">
+          <h1>Let's discover available jobs for you</h1>
+          <h5>Tell us about youself</h5>
+        </div>
+        <form id="job-filter-form" action="{{ url_for('predict') }}" method="post">
+          <div class="form-section left">
+            <label for="education">Education</label>
+            <select id="education" name="education">
+              <!-- Option elements here -->
+            <option disabled selected>Pick one</option>
+                {% for education in educations %}
+                <option>{{ education }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" >
+
+            <label for="pay-rate">Pay rate</label>
+            <input type="text" id="pay-rate" name="payrate" >
+          </div>
+
+          <div class="form-section right">
+            <label for="job-description">Interested Job Description</label>
+              <input type="text" id="job-description" name="description" >
+
+
+            <div class="skills-section">
+              <label for="skills">Your available skills</label>
+              <div id="skills-list">
+                  <div class="skill-input-group">
+                      <input type="text" class="skill-input" name="skills" placeholder="Skill">
+                  </div>
+              </div>
+              <a href="#" id="add-skill-link">Add More Skills</a> <!-- Changed to a text link -->
+            </div>
+          
+          </div>
+
+          <button type="submit">confirm</button>
+        </form>
+
+      </div>
+    </section>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var addSkillLink = document.getElementById('add-skill-link');
+    var skillsList = document.getElementById('skills-list');
+
+    // Prevent default link behavior
+    addSkillLink.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        var skillInputGroup = document.createElement('div');
+        skillInputGroup.setAttribute('class', 'skill-input-group');
+
+        var newSkillInput = document.createElement('input');
+        newSkillInput.setAttribute('type', 'text');
+        newSkillInput.setAttribute('class', 'skill-input');
+        newSkillInput.setAttribute('name', 'skills[]');
+        newSkillInput.setAttribute('placeholder', 'Skill');
+        skillInputGroup.appendChild(newSkillInput);
+
+        var cancelLink = document.createElement('span'); // Use a span instead of a button
+        cancelLink.setAttribute('class', 'cancel-skill-link');
+        cancelLink.textContent = 'X'; // Text is 'X'
+        cancelLink.onclick = function() {
+            this.parentElement.remove();
+        };
+        skillInputGroup.appendChild(cancelLink);
+
+        skillsList.appendChild(skillInputGroup);
+    });
+});
+
+    </script>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>JobHUB</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
