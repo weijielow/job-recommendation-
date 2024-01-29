@@ -57,7 +57,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="" class="book-a-table-btn scrollto d-none d-lg-flex">Github</a>
+      <a href="https://github.com/weijielow/job-recommendation-" class="book-a-table-btn scrollto d-none d-lg-flex">Github</a>
 
     </div>
   </header><!-- End Header -->
@@ -104,7 +104,6 @@
                       <input type="text" class="skill-input" name="skills" placeholder="Skill">
                   </div>
               </div>
-              <a href="#" id="add-skill-link">Add More Skills</a> <!-- Changed to a text link -->
             </div>
           
           </div>
@@ -114,38 +113,6 @@
 
       </div>
     </section>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var addSkillLink = document.getElementById('add-skill-link');
-    var skillsList = document.getElementById('skills-list');
-
-    // Prevent default link behavior
-    addSkillLink.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        var skillInputGroup = document.createElement('div');
-        skillInputGroup.setAttribute('class', 'skill-input-group');
-
-        var newSkillInput = document.createElement('input');
-        newSkillInput.setAttribute('type', 'text');
-        newSkillInput.setAttribute('class', 'skill-input');
-        newSkillInput.setAttribute('name', 'skills[]');
-        newSkillInput.setAttribute('placeholder', 'Skill');
-        skillInputGroup.appendChild(newSkillInput);
-
-        var cancelLink = document.createElement('span'); // Use a span instead of a button
-        cancelLink.setAttribute('class', 'cancel-skill-link');
-        cancelLink.textContent = 'X'; // Text is 'X'
-        cancelLink.onclick = function() {
-            this.parentElement.remove();
-        };
-        skillInputGroup.appendChild(cancelLink);
-
-        skillsList.appendChild(skillInputGroup);
-    });
-});
-
-    </script>
 
   </main><!-- End #main -->
 
